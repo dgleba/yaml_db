@@ -5,7 +5,14 @@ module YamlDb
     end
 
     def self.data_dump_dir_task
-      dir = ENV['dir'] || "#{yaml_db\Time.now.strftime('%F_%H.%M.%S')}"
+      
+      #   if env dir is not set, use yamldb_date/ folder... David Gleba 2016-07-27_Wed_09.10-AM
+      system 'mkdir', '-p', 'db/yamldb_date'
+      # set env dir...
+      # ENV["dir"]='yamldb'
+      dir = ENV['dir'] || "yamldb_date/#{Time.now.strftime('%F_%H.%M.%S')}"
+
+      #dir = ENV['dir'] || "#{yaml_db\Time.now.strftime('%F_%H.%M.%S')}"
       SerializationHelper::Base.new(helper).dump_to_dir(dump_dir("/#{dir}"))
     end
 
