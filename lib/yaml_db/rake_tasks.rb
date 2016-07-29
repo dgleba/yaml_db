@@ -4,6 +4,8 @@ module YamlDb
       SerializationHelper::Base.new(helper).dump(db_dump_data_file(helper.extension))
     end
 
+    ENV["dir"]='yamldb'
+
     def self.data_dump_dir_task
       
       #   if env dir is not set, use yamldb_date/ folder... David Gleba 2016-07-27_Wed_09.10-AM
